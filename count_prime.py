@@ -28,6 +28,7 @@ class Solution:
                 t += i
         return len(l)
         """
+        """
         count = 0
         l = [1 for _ in xrange(2, n)]
         for i in range(2, int(sqrt(n)+1)):
@@ -37,11 +38,20 @@ class Solution:
                     l[t-2] = 0
                     t += i
         return sum(l)
-            
+        """
+        if n < 3:
+            return 0
+        primes = [True] * n
+        primes[0] = primes[1] = False
+        for i in range(2, int(n ** 0.5) + 1):
+            if primes[i]:
+                primes[i * i: n: i] = [False] * len(primes[i * i: n: i])
+        return sum(primes)
 
 s = Solution()
 
-print s.countPrimes(499979) ## 41537
-print s.countPrimes(20) ## 8
-print s.countPrimes(100) ## 25
-print s.countPrimes(5)
+print s.countPrimes(999987) ## 
+#print s.countPrimes(499979) ## 41537
+#print s.countPrimes(20) ## 8
+#print s.countPrimes(100) ## 25
+print s.countPrimes(0)
